@@ -1,3 +1,4 @@
+[![BCH compliance](https://bettercodehub.com/edge/badge/rgosik/projekt2-rgosik?branch=master)](https://bettercodehub.com/)
 # Testowanie aplikacji JAVA 2017-2018
 ## Projekt 2 (Maven, JUnit oraz atrapy) 
 
