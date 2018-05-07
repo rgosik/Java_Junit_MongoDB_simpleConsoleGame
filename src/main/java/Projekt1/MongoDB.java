@@ -6,7 +6,7 @@ import java.util.List;
 public class MongoDB {
     public IShipService service;
 
-    public MongoDB(){
+    public MongoDB() {
 
         service = new Service();
     }
@@ -15,10 +15,12 @@ public class MongoDB {
 
         service = fake;
     }
+
     public List<Ship> getAll() {
 
         return service.getAll();
     }
+
     public void act(char in, Ship ship) throws IOException {
         service.act(in, ship);
     }
