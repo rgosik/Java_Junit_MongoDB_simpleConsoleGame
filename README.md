@@ -1,5 +1,6 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/rgosik/projekt2-rgosik?branch=master)](https://bettercodehub.com/)
 [![Build Status](https://travis-ci.com/TestowanieJAVA2017-2018Gr3/projekt2-rgosik.svg?token=yssCwqfbmzNky5XJx6Su&branch=master)](https://travis-ci.com/TestowanieJAVA2017-2018Gr3/projekt2-rgosik)
+[![codebeat badge](https://codebeat.co/badges/93706464-6128-40f8-9dc7-f686fc760f6e)](https://codebeat.co/projects/github-com-rgosik-projekt2-rgosik-master)
 # Testowanie aplikacji JAVA 2017-2018
 ## Projekt 2 (Maven, JUnit oraz atrapy) 
 
