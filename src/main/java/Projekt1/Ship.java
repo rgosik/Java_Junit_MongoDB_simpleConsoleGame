@@ -1,7 +1,7 @@
 package Projekt1;
 
 public class Ship {
-	
+
 	int x; 
 	int y;
 	char direction;
@@ -15,6 +15,8 @@ public class Ship {
 					 {'w', 'w', 'w', 'x', 'w', 'w', 'w', 'w', 'x', 'w'},
 					 {'x', 'w', 'x', 'w', 'w', 'w', 'w', 'w', 'w', 'w'},
 					 {'w', 'w', 'w', 'w', 'x', 'w', 'w', 'w', 'x', 'w'}, };
+
+
 	public Ship(int x, int y, char dir) throws ShipOnLandException {
 		if(!(checkIfLand(x, y) || !validateXY(x,y))) {
 			this.x = x; 
@@ -28,6 +30,32 @@ public class Ship {
 			direction = dir;					
 		} else throw new Error();				
 	}
+	public Ship(){}
+	public int getX(){
+		return this.x;
+	}
+	public int getY(){
+		return this.y;
+	}
+	public char getDrection(){
+		return this.direction;
+	}
+	public char[][] getMap(){
+		return this.map;
+	}
+	public void setX(int x){
+		this.x =x;
+	}
+	public void setY(int y){
+		this.y =y;
+	}
+	public void setDirection(char direction){
+		this.direction = direction;
+	}
+	public void setMap(char[][] map){
+		this.map = map;
+	}
+
 	
 	public void move(char c) {
 		System.out.println("\n---------------------------------------");

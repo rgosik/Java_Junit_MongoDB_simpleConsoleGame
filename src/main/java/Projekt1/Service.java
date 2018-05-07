@@ -7,12 +7,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public final class Service {
-	
+import org.jongo.Jongo;
+import org.jongo.MongoCollection;
+import org.jongo.MongoCursor;
+
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+
+public class Service implements IShipService {
+
+	static MongoCollection mapdb;
+
 	static File file;
 	public static void help() {
 		System.out.println("------------HELP-----------");
@@ -28,7 +37,14 @@ public final class Service {
 		System.out.println("| h -> okno HELP          |");
 		System.out.println("---------------------------\n");
 	}
-	public static void act(char in, Ship ship) throws IOException {
+	public static void dbInit(){
+		DB db = new MongoClient().getDB("mapDB");
+		mapdb = new Jongo(db).getCollection("mapdb");
+	}
+	public static void colecetionDrop(){
+		mapdb.remove("{ x: { $in:[#, #, #, #, #, #, #, #, #, #] }}", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	}
+	public void act(char in, Ship ship) throws IOException {
 		switch(in) { 
 			case 'x':
 				break;
@@ -49,8 +65,27 @@ public final class Service {
 				break;
 			default:
 				ship.move(in);
+                mapdb.insert(ship);
 				break;
 		}
+	}
+	/*public static boolean newSesion(){
+		System.out.println("\nCzy chcesz zaczac nowa sesje ? [Y|N]: ");
+		Scanner input = new Scanner(System.in);
+		char s = input.next(".").charAt(0);
+		if (s == 'Y'){ return true;}
+		else { return false;}
+	}*/
+
+	public List<Ship> getAll() {
+		List<Ship> all = new ArrayList<Ship>();
+		MongoCursor<Ship> cursor = mapdb.find().as(Ship.class);
+
+		if(cursor == null) return Collections.emptyList();
+		for(Ship m : cursor) {
+			all.add(m);
+		}
+		return all;
 	}
 	
 	private static void saveMap(Ship ship) throws IOException {
@@ -89,7 +124,6 @@ public final class Service {
 			   }
 			   row++;
 			}
-			reader.close();
 		} 
 		catch(FileNotFoundException e) {
 			System.out.println("Zapis mapy nie istnieje");

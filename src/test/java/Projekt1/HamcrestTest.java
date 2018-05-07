@@ -17,21 +17,24 @@ public class HamcrestTest {
 	
 	Ship shipT1;
 	Ship shipT2;
+	Service acter;
 	
 	@Before
 	public void setUp() throws Exception {
 		shipT1 = new Ship(2,2,'S');
 		shipT2 = new Ship(1,6,'S');
+		acter = new Service();
+		acter.dbInit();
 	}
 	
 	@Test
 	public void hTestMoveSw() throws IOException {
-		Service.act('w', shipT1);
+		acter.act('w', shipT1);
 		assertThat(shipT1.map[1][2], equalTo('S'));
 	}
 	@Test
 	public void hTestInvalidCommand() throws IOException {
-		Service.act('u', shipT2);
+		acter.act('u', shipT2);
 		assertThat(shipT2.map[1][6], equalTo('S'));
 	}
 	
